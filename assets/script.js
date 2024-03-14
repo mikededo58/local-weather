@@ -7,7 +7,7 @@ const currentWeatherContainer = document.getElementById(
 function handleSearch(event) {
   event.preventDefault();
 
-  const searchUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInputEl.val()}&appid={b0aa53ed3123b7e0caa8552579902513}`;
+  const searchUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInputEl.val()}&appid={b0aa53ed3123b7e0caa8552579902513}`; //API Key
 
   fetch(searchUrl)
     .then(function (response) {
@@ -41,4 +41,8 @@ searchButton.addEventListener("click", handleSearch);
 
 // `https://api.openweathermap.org/data/2.5/forecast?q=London&appid={b0aa53ed3123b7e0caa8552579902513}
 
-//create one function iterate through the object and then append the data to the DOM. skip ahead 8 on the 4 loop
+//create one function iterate through the object and then append the data to the DOM. skip ahead 8 on the for loop
+
+// Create a function to append recently searched cities
+
+// create JSON to save searches to local storages
