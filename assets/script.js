@@ -7,7 +7,9 @@ const currentWeatherContainer = document.getElementById(
 function handleSearch(event) {
   event.preventDefault();
 
-  const searchUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInputEl.val()}&appid={b0aa53ed3123b7e0caa8552579902513}`; //API Key
+  // https://api.openweathermap.org/data/2.5/forecast?q={Denver}&appid=b0aa53ed3123b7e0caa8552579902513
+
+  const searchUrl = `https://api.openweathermap.org/data/2.5/forecast?q=$&appid=${searchInputEl.val()}&appid=b0aa53ed3123b7e0caa8552579902513`; //API Key
 
   fetch(searchUrl)
     .then(function (response) {
