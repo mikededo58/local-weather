@@ -1,17 +1,1 @@
-header {
-  padding: 20px;
-  background-color: blue;
-  color: white;
-}
 
-aside {
-  color: blue;
-  border: 2px;
-  border-style: solid;
-  border-color: black;
-  padding: 30px;
-}
-
-main {
-  flex-direction: column;
-}
