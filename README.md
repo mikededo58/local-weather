@@ -17,6 +17,9 @@ To leverage the project simply visit my repo at:https://github.com/mikededo58/lo
 # Usage:
 
 Simply enter the city whose weather you are looking for to get results. Find the pictures below for refrence.
+![alt text](local-weather/local-wather-usage-photos/Screenshot 2024-03-18 at 9.45.38 AM.png)
+![alt text](local-weather/local-wather-usage-photos/Screenshot 2024-03-18 at 9.45.55 AM.png)
+![alt text](local-weather/local-wather-usage-photos/Screenshot 2024-03-18 at 9.45.38 AM.png)
 
 # Credits
 
