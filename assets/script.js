@@ -1,3 +1,4 @@
+//Decalring Elements for DOM
 const searchInputEl = document.querySelector("#cityInput");
 const searchButtonEl = document.querySelector("#searchButton");
 const searchHistoryEl = document.querySelector("#searchHistory");
@@ -9,16 +10,19 @@ const dayFour = document.querySelector("#forecastDayFour");
 const dayFive = document.querySelector("#forecastDayFive");
 const locations = [];
 
+//Creating function for the localstorage
 if (localStorage.getItem("locations") === typeof Array) {
   const localArr = JSON.parse(localStorage.getItem("locations"));
   locations.push(...localArr);
 }
 
+//Function to handle the history search and calling the weatherForecasr function
 function handleHistorySearch(event) {
   console.log(event.target.id);
   weatherForecast(event.target.id);
 }
 
+//function to convert temp to F
 function tempConversion(tempKelvin) {
   const convertedTemp = Math.round(
     ((Number(tempKelvin) - 273.15) * 9) / 5 + 32
@@ -26,11 +30,13 @@ function tempConversion(tempKelvin) {
   return convertedTemp;
 }
 
+//Function to convert windspeed to mph
 function windSpeedConversion(speedMps) {
   const convertedSpeed = Math.round(Number(speedMps) * 223.7) / 100;
   return convertedSpeed;
 }
 
+//Function to format date correctly
 function dateFormatted(date) {
   const dateFormat = `${date.slice(5, 7)}/${date.slice(8, 10)}/${date.slice(
     0,
@@ -38,12 +44,14 @@ function dateFormatted(date) {
   )}`;
   return dateFormat;
 }
+//function to store search history info
 function storeSearchHistory(location) {
   // const lslocations = [];
   if (JSON.parse(localStorage.getItem("locations")) === typeof Array) {
     const localArr = JSON.parse(localStorage.getItem("locations"));
     // lscities.push(location);
-    locations.push(...localArr);
+    // create loop to search array for if city exist, if it does not execute below code and
+    locations.push(...localArr); // pushing object to local storage
     console.log(locations);
   } else {
     // lscities.push(location);
@@ -54,6 +62,7 @@ function storeSearchHistory(location) {
 }
 
 function displayStoredCities() {
+  // function to display recently searched cities in the UI
   searchHistoryEl.textContent = "";
   for (i = 0; i < locations.length; i++) {
     console.log(locations);
@@ -66,17 +75,16 @@ function displayStoredCities() {
   }
 }
 
+//Function to call api and appened info to UI
 function weatherForecast(locationSearch) {
-  // location = locationSearch;
+  const searchUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${locationSearch}&appid=b0aa53ed3123b7e0caa8552579902513`; //API we are calling
 
-  const searchUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${locationSearch}&appid=b0aa53ed3123b7e0caa8552579902513`; //API Key
-
-  fetch(searchUrl)
+  fetch(searchUrl) // Calling the API
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      console.log(data); // Defining elements for DOM manipulation
       const todayIcon = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
       const todayDate = dateFormatted(data.list[0].dt_txt);
       const todayCityDateEl = document.createElement("h2");
@@ -124,7 +132,7 @@ function weatherForecast(locationSearch) {
       const dayFiveWindEl = document.createElement("p");
       const dayFiveHumidityEl = document.createElement("p");
 
-      todayCityDateEl.textContent = `${data.city.name} ${todayDate}`;
+      todayCityDateEl.textContent = `${data.city.name} ${todayDate}`; // assinging datat to the elements assigned above
       todayImgEl.setAttribute("src", todayIcon);
       todayTempEl.textContent = `Temp: ${tempConversion(
         data.list[0].main.temp
@@ -184,7 +192,7 @@ function weatherForecast(locationSearch) {
       )} MPH`;
       dayFiveHumidityEl.textContent = `Humidity: ${data.list[39].main.humidity}%`;
 
-      todayEl.textContent = "";
+      todayEl.textContent = ""; // Appending information to DOM elements
       todayEl.appendChild(todayCityDateEl);
       todayEl.appendChild(todayImgEl);
       todayEl.appendChild(todayTempEl);
@@ -231,6 +239,7 @@ function weatherForecast(locationSearch) {
 }
 
 function handleSearch(event) {
+  // function to kick of the search
   event.preventDefault();
   weatherForecast(searchInputEl.value);
 }
